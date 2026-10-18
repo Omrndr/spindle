@@ -9,6 +9,9 @@ public class CatalogTests
     [InlineData("TABLO.XLSX", FileKind.Excel)]
     [InlineData("sunum.pptx", FileKind.PowerPoint)]
     [InlineData("foto.HEIC", FileKind.Image)]
+    [InlineData("DSCF0001.RAF", FileKind.Image)]
+    [InlineData("P1000001.raw", FileKind.Image)]
+    [InlineData("IMG_0001.CR3", FileKind.Image)]
     [InlineData("klip.mov", FileKind.Video)]
     [InlineData("ses.opus", FileKind.Audio)]
     [InlineData("yedek.tar.gz", FileKind.Archive)]
@@ -70,6 +73,29 @@ public class CatalogTests
         Assert.Equal(1, ConversionService.ParallelismFor("tool:zip", ["a.jpg", "b.jpg"]));
         Assert.Equal(1, ConversionService.ParallelismFor("to:png", ["a.jpg"]));
     }
+
+    [Fact]
+    public void Camera_raw_converts_to_every_image_format_but_never_to_itself()
+    {
+        var ids = FormatCatalog.ConvertActionsFor(["DSCF0001.raf"]).Select(a => a.Id).ToList();
+        Assert.Equal(["to:png", "to:jpg", "to:webp", "to:pdf", "to:avif", "to:tiff", "to:bmp", "to:gif", "to:ico"], ids);
+        Assert.Contains("tool:compress", FormatCatalog.ToolActionsFor(["DSCF0001.raf"]).Select(a => a.Id));
+    }
+
+    [Fact]
+    public void Raw_photos_convert_two_at_a_time()
+    {
+        var raws = Enumerable.Range(1, 8).Select(i => $"DSCF{i:0000}.raf").ToList();
+        Assert.Equal(2, ConversionService.ParallelismFor("to:jpg", raws));
+    }
+
+    [Theory]
+    [InlineData("DSCF0001.raf", true)]
+    [InlineData("P1000001.RAW", true)]
+    [InlineData("IMG_0001.heic", true)]
+    [InlineData("foto.jpg", false)]
+    public void Raw_and_heic_tools_save_as_jpg(string path, bool readOnly) =>
+        Assert.Equal(readOnly, Spindle.Core.Engines.ImageEngine.ReadOnly(path));
 
     [Fact]
     public void Jpeg_alias_hides_jpg_target()

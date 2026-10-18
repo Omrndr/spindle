@@ -14,8 +14,13 @@ public static class ImageEngine
             Flatten(image);
         if (format == MagickFormat.Ico && (image.Width > 256 || image.Height > 256))
             image.Resize(new MagickGeometry(256, 256));
+        // RAW'dan 16 bit PNG 26 MP'de ~120 MB olur; 8 bit yeterli. TIFF düzenleme ve arşiv için 16 bit kalır.
+        if (format == MagickFormat.Png && FormatCatalog.IsCameraRaw(input))
+            image.Depth = 8;
 
-        image.Quality = (uint)quality;
+        // Kalite ayarı JPG/WebP/AVIF içindir. PNG'de ImageMagick bu sayıyı "zlib düzeyi + filtre" diye okur.
+        // 26 MP'lik bir fotoğrafta ölçüldü: 90/75 ~32 sn, 45 (zlib 4, uyarlamalı filtre) 9 sn ve en küçük dosya.
+        image.Quality = format == MagickFormat.Png ? 45u : (uint)quality;
         image.Write(output, format);
         return output;
     }
@@ -32,13 +37,20 @@ public static class ImageEngine
             "gray" => ("siyah-beyaz", img => img.Grayscale()),
             _ => throw new NotSupportedException(tool),
         };
-        var output = OutputPaths.WithSuffix(input, suffix);
+        // RAW ve HEIC okunabilir ama yazılamaz; bu dosyalarda aracın sonucu JPG olarak kaydedilir.
+        var writable = !ReadOnly(input);
+        var output = OutputPaths.WithSuffix(input, suffix, writable ? null : "jpg");
         using var image = Load(input);
         image.Quality = (uint)quality;
         op(image);
-        image.Write(output);
+        if (writable) image.Write(output);
+        else image.Write(output, MagickFormat.Jpeg);
         return output;
     }
+
+    /// <summary>Okunabilen ama aynı biçimde kaydedilemeyen dosyalar (fotoğraf makinesi RAW'ları, HEIC).</summary>
+    public static bool ReadOnly(string path) =>
+        FormatCatalog.IsCameraRaw(path) || FormatCatalog.ExtensionOf(path) is "heic" or "heif";
 
     static void Compress(IMagickImage<ushort> image, int quality)
     {
@@ -66,6 +78,15 @@ public static class ImageEngine
         {
             settings.Density = new Density(192);
             settings.BackgroundColor = MagickColors.Transparent;
+        }
+
+        if (FormatCatalog.IsCameraRaw(path))
+        {
+            // Renkler makinenin kendi JPG'sine yakın olsun: makinenin kaydettiği beyaz dengesi.
+            settings.SetDefine(MagickFormat.Dng, "use-camera-wb", "true");
+            // Fujifilm X-Trans sensörlerinde LibRaw'ın varsayılan 3 geçişli renk çözmesi 26 MP'de ~30 sn sürüyor;
+            // tek geçiş ~7 sn ve %100 büyütmede fark görünmüyor.
+            if (ext == "raf") settings.SetDefine(MagickFormat.Dng, "interpolation-quality", "1");
         }
 
         if (ext is "ico" or "gif" or "tif" or "tiff")

@@ -15,12 +15,21 @@ public sealed record WheelAction(string Id, string Label, string Caption, string
 
 public static class FormatCatalog
 {
+    /// <summary>
+    /// Fotoğraf makinesi RAW dosyaları: Fujifilm .raf, Panasonic/Leica .raw, Adobe .dng, Canon .cr2/.cr3, Nikon .nef,
+    /// Sony .arw, Olympus .orf, Panasonic .rw2, Pentax .pef, Samsung .srw. Hepsi Magick.NET'in içindeki LibRaw ile
+    /// okunur; hiçbiri yazılamaz.
+    /// </summary>
+    public const string CameraRaw = "raf raw dng cr2 cr3 nef arw orf rw2 pef srw";
+
+    public static bool IsCameraRaw(string path) => CameraRaw.Split(' ').Contains(ExtensionOf(path));
+
     static readonly Dictionary<string, FileKind> Kinds = Build(
         (FileKind.Word, "doc docx docm dot dotx rtf odt txt"),
         (FileKind.Excel, "xls xlsx xlsm ods csv"),
         (FileKind.PowerPoint, "ppt pptx pps ppsx odp"),
         (FileKind.Pdf, "pdf"),
-        (FileKind.Image, "jpg jpeg jfif png webp heic heif avif bmp tif tiff gif ico svg psd tga"),
+        (FileKind.Image, "jpg jpeg jfif png webp heic heif avif bmp tif tiff gif ico svg psd tga " + CameraRaw),
         (FileKind.Audio, "mp3 m4a wav flac ogg oga opus aiff aif wma aac"),
         (FileKind.Video, "mp4 m4v mov mkv webm avi wmv flv mpg mpeg 3gp ts"),
         (FileKind.Archive, "zip tar tgz gz"));

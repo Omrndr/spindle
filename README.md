@@ -54,6 +54,7 @@ Kaynakla aynı biçim çarkta gösterilmez (ör. DOCX dosyası için DOCX tuşu 
 | PowerPoint sunusu | ppt, pptx, pps, ppsx, odp | PDF, PPTX, PNG (her slayt ayrı), ODP, PPT | Microsoft Office |
 | PDF | pdf | DOCX (Office gerekir), PNG ve JPG (her sayfa ayrı) | — |
 | Görsel | jpg, jpeg, jfif, png, webp, heic, heif, avif, bmp, tif, tiff, gif, ico, svg, psd, tga | PNG, JPG, WEBP, PDF, AVIF, TIFF, BMP, GIF, ICO | — |
+| Fotoğraf makinesi RAW | raf (Fujifilm), raw (Panasonic/Leica), dng, cr2, cr3 (Canon), nef (Nikon), arw (Sony), orf (Olympus), rw2 (Panasonic), pef (Pentax), srw (Samsung) | PNG, JPG, WEBP, PDF, AVIF, TIFF, BMP, GIF, ICO | — |
 | Ses | mp3, m4a, wav, flac, ogg, oga, opus, aiff, aif, wma, aac | MP3, M4A, WAV, FLAC, OGG, OPUS, AIFF, AAC | ffmpeg |
 | Video | mp4, m4v, mov, mkv, webm, avi, wmv, flv, mpg, mpeg, 3gp, ts | MP4, MOV, MKV, WEBM, GIF, AVI; sesi MP3 ya da M4A olarak | ffmpeg |
 | Arşiv | zip, tar, tar.gz, tgz | ZIP | — |
@@ -201,7 +202,10 @@ Word kullanan her dönüştürücüde aynıdır.
   ya da karmaşık sayfalar özgün PDF'le birebir aynı görünmeyebilir. Taranmış (yalnızca resim olan) PDF'lerde
   sayfalar metin değil resim olarak gelir. Office'in daha önce takıldığı bir PDF'te Word "ciddi hataya neden oldu"
   diye sorar; Spindle bu güvenlik sorusunu "Hayır"la yanıtlar ve dönüşüm iptal edilir.
-- HEIC dosyaları okunabilir ama HEIC'e kaydedilemez.
+- HEIC ve RAW dosyaları okunabilir ama aynı biçimde kaydedilemez; bu dosyalarda araçların sonucu JPG olarak kaydedilir
+  (`DSCF0065 (sıkıştırılmış).jpg`). RAW'lar makinenin kaydettiği beyaz dengesiyle açılır; 26 MP'lik bir Fujifilm RAF
+  JPG'ye ~9 sn'de çevrilir ve sırasında ~570 MB bellek kullanır, bu yüzden RAW'lar aynı anda en fazla iki tane çevrilir.
+  PNG'ye 8 bit, TIFF'e 16 bit yazılır.
 - Sürükle + tuş hareketi varsayılan olarak yalnızca Dosya Gezgini ve masaüstünde çalışır (Ayarlar'dan değiştirilebilir).
 
 ## Geliştirme

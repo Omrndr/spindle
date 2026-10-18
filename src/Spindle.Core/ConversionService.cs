@@ -50,6 +50,8 @@ public sealed class ConversionService(ConversionOptions options)
         if (kinds.Overlaps([FileKind.Word, FileKind.Excel, FileKind.PowerPoint]) && actionId.StartsWith("to:")) return 1;
         if (kinds.Contains(FileKind.Pdf) && actionId == "to:docx") return 1;
         if (kinds.Overlaps([FileKind.Audio, FileKind.Video])) return 2;
+        // Bir RAW fotoğraf açılınca 200 MB'ı aşabilir; aynı anda en fazla ikisi.
+        if (files.Any(FormatCatalog.IsCameraRaw)) return 2;
         return Math.Clamp(Environment.ProcessorCount / 2, 2, 6);
     }
 
