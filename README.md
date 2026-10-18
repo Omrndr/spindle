@@ -6,7 +6,7 @@ Dosya Gezgini'nde bir dosyayı sürüklerken **Shift**'e basın: imlecin etrafı
 Dosyayı istediğiniz biçimin tuşuna bırakın; dönüştürülmüş kopya orijinalin yanına kaydedilir.
 Her şey bilgisayarınızda olur; hiçbir dosya internete gönderilmez.
 
-**[⬇ Spindle.exe'yi indir](https://github.com/Omrndr/spindle/releases/latest/download/Spindle.exe)** · Windows 10/11 · 52 MB · [kurulum ve gereksinimler](#kurulum)
+**[⬇ Spindle.exe'yi indir](https://github.com/Omrndr/spindle/releases/latest/download/Spindle.exe)** · Windows 10/11 · 52 MB · [kurulum ve gereksinimler](#kurulum) · [tanıtım sayfası](https://korayakdogan.me/spindle/)
 
 <p align="center"><img src="docs/tanitim-donustur.gif" width="720" alt="rapor.docx sürüklenir, Shift'e basılır, PDF tuşuna bırakılır"></p>
 

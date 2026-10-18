@@ -33,6 +33,8 @@
 
     <!-- macOS tarzı anahtar -->
     <Style x:Key="Switch" TargetType="CheckBox">
+      <!-- CheckBox ve RadioButton yazıları pencerenin rengini kendiliğinden almaz (sistem siyahı kalır). -->
+      <Setter Property="Foreground" Value="{DynamicResource Ink}"/>
       <Setter Property="Cursor" Value="Hand"/>
       <Setter Property="Margin" Value="0,6"/>
       <Setter Property="Template">
@@ -68,6 +70,7 @@
 
     <!-- Tuş seçici: klavye tuşu görünümlü radyo düğmeleri -->
     <Style x:Key="KeyChoice" TargetType="RadioButton">
+      <Setter Property="Foreground" Value="{DynamicResource Ink}"/>
       <Setter Property="Cursor" Value="Hand"/>
       <Setter Property="Margin" Value="0,0,8,0"/>
       <Setter Property="Template">

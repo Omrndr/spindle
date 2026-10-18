@@ -18,7 +18,7 @@
     <ApplicationIcon>Assets\spindle.ico</ApplicationIcon>
     <AssemblyTitle>Spindle</AssemblyTitle>
     <Product>Spindle</Product>
-    <Version>0.1.1</Version>
+    <Version>0.1.2</Version>
     <!-- WFO0003: DPI ayarı manifestte; WPF uygulaması için doğru yer orası. -->
     <NoWarn>$(NoWarn);WFO0003</NoWarn>
   </PropertyGroup>
