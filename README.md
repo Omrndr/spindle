@@ -1,129 +1,142 @@
 # Spindle
 
-**Windows için çevrimdışı dosya dönüştürücü. Sürükle, tuşa bas, bırak.**
+**English** · [Türkçe](README.tr.md)
 
-Dosya Gezgini'nde bir dosyayı sürüklerken **Shift**'e basın: imlecin etrafında bir tuş takımı açılır.
-Dosyayı istediğiniz biçimin tuşuna bırakın; dönüştürülmüş kopya orijinalin yanına kaydedilir.
-Her şey bilgisayarınızda olur; hiçbir dosya internete gönderilmez.
+**A 100% local, offline file converter for Windows. Drag, press a key, drop.**
 
-**[⬇ Spindle.exe'yi indir](https://github.com/Omrndr/spindle/releases/latest/download/Spindle.exe)** · Windows 10/11 · 52 MB · [kurulum ve gereksinimler](#kurulum) · [tanıtım sayfası](https://korayakdogan.me/spindle/)
+While dragging a file in File Explorer, press **Shift**: a ring of keys opens around the cursor.
+Drop the file on the format you want; the converted copy is saved next to the original.
+Everything happens on your computer; no file is ever uploaded.
 
-<p align="center"><img src="docs/tanitim-donustur.gif" width="720" alt="rapor.docx sürüklenir, Shift'e basılır, PDF tuşuna bırakılır"></p>
+**[⬇ Download Spindle.exe](https://github.com/Omrndr/spindle/releases/latest/download/Spindle.exe)** · Windows 10/11 · 52 MB · [installation and requirements](#installation) · [website](https://korayakdogan.me/spindle/)
 
-Arayüz, macOS'taki [Tangerine](https://tangerineformac.com)'den esinlenmiştir.
+<p align="center"><img src="docs/tanitim-donustur.gif" width="720" alt="rapor.docx is dragged, Shift is pressed, and it is dropped on the PDF key"></p>
 
-## Nasıl kullanılır?
+The interface is inspired by [Tangerine](https://tangerineformac.com) for macOS.
+Spindle's interface is in Turkish for now, as you can see in the animations above.
 
-Spindle ilk açıldığında aşağıdaki üç kısa tanıtımı gösterir. Sonra tepsi simgesinin menüsünden ya da
-Ayarlar'daki **Nasıl kullanılır?** bağlantısından yeniden açılabilir.
+## 100% local
 
-### 1. Sürükle + Shift: dönüştür
+- **Your files never leave your computer.** Every conversion runs on this PC, using Office, Magick.NET, ffmpeg and
+  Windows' own PDF engine. Nothing is uploaded to a server.
+- **No internet needed.** Spindle never connects anywhere on its own: no account, no ads, no usage data.
+  The only exception is the optional "Install ffmpeg" button in Settings, which runs winget when you click it.
+- **Open source.** All the code is here; you can read it and build it yourself.
 
-Bir dosyayı sürüklerken **Shift**'e basın, açılan tuşlardan birine bırakın. İmlecin altındaki tuş beklemeden basılır
-ve hedef biçimin rengine boyanır; ortadaki yuvarlak tuş ne olacağını yazar (`PDF · rapor.docx · → belge`).
-Köşedeki kart ilerlemeyi gösterir, iş bitince **Göster** ile yeni dosyayı açar.
+## How to use
 
-### 2. Sürükle + Ctrl: araçlar
+The first time Spindle starts, it shows the three short animations below. You can open them again from the tray icon
+menu or from the **Nasıl kullanılır?** (How to use) link in Settings.
 
-<p align="center"><img src="docs/tanitim-araclar.gif" width="720" alt="foto.jpg sürüklenir, Ctrl'ye basılır, SIKIŞTIR tuşuna bırakılır"></p>
+### 1. Drag + Shift: convert
 
-**Ctrl** ile araçlar açılır: sıkıştır, küçült, döndür, metadata sil, sesi çıkar… Sonuç yine orijinalin yanına,
-yeni bir adla kaydedilir (`foto (sıkıştırılmış).jpg`).
+Press **Shift** while dragging a file and drop it on one of the keys. The key under the cursor goes down instantly and
+takes the color of the target format; the round key in the middle says what will happen (`PDF · rapor.docx · → belge`).
+A small card in the corner shows progress and opens the new file with **Göster** (Show) when it's done.
 
-### 3. Sağ tık menüsü
+### 2. Drag + Ctrl: tools
 
-<p align="center"><img src="docs/tanitim-sag-tik.gif" width="720" alt="klip.mp4'e sağ tıklanır, Spindle, Dönüştür seçilir, MP3 tuşuna tıklanır"></p>
+<p align="center"><img src="docs/tanitim-araclar.gif" width="720" alt="foto.jpg is dragged, Ctrl is pressed, and it is dropped on the compress key"></p>
 
-Sürüklemek istemezseniz dosyaya sağ tıklayıp **Spindle ▸ Dönüştür…** ya da **Araçlar…** seçin, sonra tuşa tıklayın.
-Menü Ayarlar'dan (ya da tanıtımın son sayfasından) açılır. Windows 11'de "Diğer seçenekleri göster" altındadır.
+**Ctrl** opens the tools: compress, shrink, rotate, strip metadata, extract audio… The result is again saved next to the
+original under a new name (`foto (sıkıştırılmış).jpg`, "compressed").
 
-Kısayol tuşları Ayarlar'dan değiştirilebilir (Shift, Ctrl, Alt). Birden fazla dosya seçerseniz çark yalnızca
-hepsinde ortak olan seçenekleri gösterir. Çıktılar hiçbir zaman var olan bir dosyanın üzerine yazılmaz
-(`rapor 2.pdf` gibi yeni ad alır).
+### 3. Right-click menu
 
-## Desteklenen biçimler
+<p align="center"><img src="docs/tanitim-sag-tik.gif" width="720" alt="klip.mp4 is right-clicked, Spindle, Convert is chosen, and the MP3 key is clicked"></p>
 
-### Dönüştürme (Shift)
+If you'd rather not drag, right-click a file, choose **Spindle ▸ Dönüştür…** (Convert) or **Araçlar…** (Tools), and
+click a key. The menu is turned on in Settings (or on the last page of the intro). On Windows 11 it's under
+"Show more options".
 
-Kaynakla aynı biçim çarkta gösterilmez (ör. DOCX dosyası için DOCX tuşu yoktur).
+The trigger keys can be changed in Settings (Shift, Ctrl, Alt). If you select several files, the wheel only shows the
+options they all share. Outputs never overwrite an existing file (they get a new name such as `rapor 2.pdf`).
 
-| Tür | Açılabilen dosyalar | Dönüştürülebildiği biçimler | Gereken |
+## Supported formats
+
+### Convert (Shift)
+
+The source's own format is not shown on the wheel (for example, a DOCX file has no DOCX key).
+
+| Type | Opens | Converts to | Needs |
 |---|---|---|---|
-| Word belgesi | doc, docx, docm, dot, dotx, rtf, odt, txt | PDF, DOCX, ODT, RTF, TXT, HTML, DOC | Microsoft Office |
-| Excel tablosu | xls, xlsx, xlsm, ods, csv | PDF, XLSX, CSV, ODS, XLS | Microsoft Office |
-| PowerPoint sunusu | ppt, pptx, pps, ppsx, odp | PDF, PPTX, PNG (her slayt ayrı), ODP, PPT | Microsoft Office |
-| PDF | pdf | DOCX (Office gerekir), PNG ve JPG (her sayfa ayrı) | — |
-| Görsel | jpg, jpeg, jfif, png, webp, heic, heif, avif, bmp, tif, tiff, gif, ico, svg, psd, tga | PNG, JPG, WEBP, PDF, AVIF, TIFF, BMP, GIF, ICO | — |
-| Fotoğraf makinesi RAW | raf (Fujifilm), raw (Panasonic/Leica), dng, cr2, cr3 (Canon), nef (Nikon), arw (Sony), orf (Olympus), rw2 (Panasonic), pef (Pentax), srw (Samsung) | PNG, JPG, WEBP, PDF, AVIF, TIFF, BMP, GIF, ICO | — |
-| Ses | mp3, m4a, wav, flac, ogg, oga, opus, aiff, aif, wma, aac | MP3, M4A, WAV, FLAC, OGG, OPUS, AIFF, AAC | ffmpeg |
-| Video | mp4, m4v, mov, mkv, webm, avi, wmv, flv, mpg, mpeg, 3gp, ts | MP4, MOV, MKV, WEBM, GIF, AVI; sesi MP3 ya da M4A olarak | ffmpeg |
-| Arşiv | zip, tar, tar.gz, tgz | ZIP | — |
+| Word document | doc, docx, docm, dot, dotx, rtf, odt, txt | PDF, DOCX, ODT, RTF, TXT, HTML, DOC | Microsoft Office |
+| Excel spreadsheet | xls, xlsx, xlsm, ods, csv | PDF, XLSX, CSV, ODS, XLS | Microsoft Office |
+| PowerPoint presentation | ppt, pptx, pps, ppsx, odp | PDF, PPTX, PNG (one per slide), ODP, PPT | Microsoft Office |
+| PDF | pdf | DOCX (needs Office), PNG and JPG (one per page) | — |
+| Image | jpg, jpeg, jfif, png, webp, heic, heif, avif, bmp, tif, tiff, gif, ico, svg, psd, tga | PNG, JPG, WEBP, PDF, AVIF, TIFF, BMP, GIF, ICO | — |
+| Camera RAW | raf (Fujifilm), raw (Panasonic/Leica), dng, cr2, cr3 (Canon), nef (Nikon), arw (Sony), orf (Olympus), rw2 (Panasonic), pef (Pentax), srw (Samsung) | PNG, JPG, WEBP, PDF, AVIF, TIFF, BMP, GIF, ICO | — |
+| Audio | mp3, m4a, wav, flac, ogg, oga, opus, aiff, aif, wma, aac | MP3, M4A, WAV, FLAC, OGG, OPUS, AIFF, AAC | ffmpeg |
+| Video | mp4, m4v, mov, mkv, webm, avi, wmv, flv, mpg, mpeg, 3gp, ts | MP4, MOV, MKV, WEBM, GIF, AVI; audio only as MP3 or M4A | ffmpeg |
+| Archive | zip, tar, tar.gz, tgz | ZIP | — |
 
-### Araçlar (Ctrl)
+### Tools (Ctrl)
 
-| Tür | Araç | Çıktı |
+Output names come from the (Turkish) interface; the English meaning is in parentheses.
+
+| Type | Tool | Output |
 |---|---|---|
-| Görsel | Sıkıştır | `foto (sıkıştırılmış).jpg` |
-| | Metadata sil (konum, kamera bilgisi…) | `foto (temiz).jpg` |
-| | %50 küçült | `foto (küçük).jpg` |
-| | Sola / sağa 90° döndür | `foto (döndürülmüş).jpg` |
-| | Siyah-beyaz | `foto (siyah-beyaz).jpg` |
-| Video | Sıkıştır | `klip (sıkıştırılmış).mp4` |
-| | 720p'ye düşür | `klip (720p).mp4` |
-| | Sesi kaldır | `klip (sessiz).mp4` |
-| | Sesi MP3 olarak al | `klip.mp3` |
-| Ses | Sıkıştır | `müzik (sıkıştırılmış).mp3` |
-| | Ses seviyesini dengele | `müzik (dengelenmiş).mp3` |
-| Arşiv | Klasöre aç | `arşiv` klasörü |
-| Her dosya ve klasör | ZIP'le, yolu kopyala | `rapor.zip`, panoya dosya yolu |
+| Image | Compress | `foto (sıkıştırılmış).jpg` (compressed) |
+| | Strip metadata (location, camera info…) | `foto (temiz).jpg` (clean) |
+| | Shrink by 50% | `foto (küçük).jpg` (small) |
+| | Rotate 90° left / right | `foto (döndürülmüş).jpg` (rotated) |
+| | Black and white | `foto (siyah-beyaz).jpg` |
+| Video | Compress | `klip (sıkıştırılmış).mp4` |
+| | Downscale to 720p | `klip (720p).mp4` |
+| | Remove audio | `klip (sessiz).mp4` (muted) |
+| | Extract audio as MP3 | `klip.mp3` |
+| Audio | Compress | `müzik (sıkıştırılmış).mp3` |
+| | Normalize loudness | `müzik (dengelenmiş).mp3` (normalized) |
+| Archive | Extract to folder | an `arşiv` folder |
+| Any file or folder | Zip, copy path | `rapor.zip`, file path on the clipboard |
 
-## Görünüm
-
-<p align="center">
-  <img src="docs/cark-donustur.png" width="260" alt="Dönüştürme çarkı">
-  <img src="docs/cark-araclar.png" width="260" alt="Araçlar çarkı">
-  <img src="docs/cark-koyu.png" width="260" alt="Koyu temada video çarkı">
-</p>
-
-- **Her tuş hedef dosyanın ailesini gösterir:** belge mavi (PDF kırmızı), tablo ve görsel yeşil, video mor, ses turuncu.
-  Araçlar çarkı tek renktir (mavi). Windows'un açık/koyu temasına uyar.
-- **Office ya da ffmpeg kurulu değilse** ilgili tuşlar soluk görünür; üzerine gelince ortada "Office gerekli" /
-  "ffmpeg gerekli" yazar ve dosya bırakılamaz.
-- **Sesler:** tuşlar arasında geçerken kısa, tok bir tık; sıradaki işler bitince kısa, yumuşak bir çan.
-  Ayarlar'dan kapatılabilir. Ses dosyası yoktur; iki ses ilk kullanımda bellekte üretilir (~32 KB).
-- **Bildirim kartı:** arka planda olan hiçbir şey görünmez (Word, Excel, PowerPoint ve ffmpeg gizli çalışır);
-  yalnızca köşedeki kart görünür. Soldaki logonun dilimleri sırayla yanar, çubuk yüzde olarak dolar.
+## Look and feel
 
 <p align="center">
-  <img src="docs/kart-yukleniyor.png" width="340" alt="Program yükleniyor">
-  <img src="docs/kart-tamam.png" width="340" alt="Tamamlandı">
+  <img src="docs/cark-donustur.png" width="260" alt="Convert wheel">
+  <img src="docs/cark-araclar.png" width="260" alt="Tools wheel">
+  <img src="docs/cark-koyu.png" width="260" alt="Video wheel in dark mode">
 </p>
 
-## Kurulum
+- **Every key shows the family of the target file:** documents blue (PDF red), spreadsheets and images green,
+  video purple, audio orange. The tools wheel uses a single color (blue). It follows Windows' light/dark theme.
+- **If Office or ffmpeg is missing,** the related keys are dimmed; hovering shows "Office gerekli" / "ffmpeg gerekli"
+  (Office / ffmpeg required) in the middle, and the file can't be dropped there.
+- **Sounds:** a short, soft click when moving between keys; a short, soft chime when the queue is done.
+  They can be turned off in Settings. There are no sound files; both sounds are generated in memory on first use (~32 KB).
+- **Notification card:** nothing running in the background is visible (Word, Excel, PowerPoint and ffmpeg run hidden);
+  only the small card in the corner shows. The logo's segments light up in turn and the bar fills by percentage.
 
-**[Spindle.exe'yi indirin](https://github.com/Omrndr/spindle/releases/latest/download/Spindle.exe)** (Windows, 52 MB) ve çalıştırın.
+<p align="center">
+  <img src="docs/kart-yukleniyor.png" width="340" alt="Loading">
+  <img src="docs/kart-tamam.png" width="340" alt="Done">
+</p>
 
-Kurulum programı yoktur: Spindle ilk açılışta kendini `%LOCALAPPDATA%\Programs\Spindle` klasörüne kopyalar,
-Başlat menüsüne ve Windows'un **Uygulamalar** listesine ekler, sonra tanıtımı gösterir. Yönetici izni gerekmez.
+## Installation
 
-- Uygulama imzalı olmadığı için Windows SmartScreen "Windows bilgisayarınızı korudu" diyebilir:
-  **Ek bilgi → Yine de çalıştır**.
-- Güncellemek için yeni `Spindle.exe`'yi indirip çalıştırın; çalışan sürüm kapanır, ayarlarınız korunur.
-- Kaldırmak için: Windows Ayarları → **Uygulamalar** → Spindle → **Kaldır**. Sağ tık menüsü, otomatik başlatma ve
-  ayarlar da silinir.
-- Sağ tık menüsü, "Windows açılınca başlat" ve sesler Spindle'ın Ayarlar'ından açılıp kapatılır.
+**[Download Spindle.exe](https://github.com/Omrndr/spindle/releases/latest/download/Spindle.exe)** (Windows, 52 MB) and run it.
 
-<p align="center"><img src="docs/ayarlar.png" width="420" alt="Ayarlar"></p>
+There is no installer: on first launch Spindle copies itself to `%LOCALAPPDATA%\Programs\Spindle`, adds itself to the
+Start menu and to Windows' **Apps** list, then shows the intro. No administrator rights are needed.
 
-### Gereksinimler
+- Because the app isn't code-signed, Windows SmartScreen may say "Windows protected your PC":
+  click **More info → Run anyway**.
+- To update, download the new `Spindle.exe` and run it; the running version closes and your settings are kept.
+- To uninstall: Windows Settings → **Apps** → Spindle → **Uninstall**. The right-click menu, autostart and settings are
+  removed too.
+- The right-click menu, "start with Windows" and sounds are turned on and off in Spindle's Settings.
 
-- Windows 10 (2004) veya Windows 11 ve [.NET 10 Masaüstü Çalışma Zamanı](https://dotnet.microsoft.com/download/dotnet/10.0)
-  (yoksa Spindle açılırken indirme bağlantısını gösterir)
-- Word/Excel/PowerPoint dönüşümleri ve PDF → Word için **Microsoft Office** (Microsoft 365 dahil)
-- Ses ve video için **ffmpeg**. Ayarlar'daki "ffmpeg'i kur" düğmesi `winget install Gyan.FFmpeg` çalıştırır.
-- Görseller, PDF sayfaları ve arşivler ek bir şey gerektirmez.
+<p align="center"><img src="docs/ayarlar.png" width="420" alt="Settings"></p>
 
-### Kaynaktan kurmak
+### Requirements
+
+- Windows 10 (2004) or Windows 11 and the [.NET 10 Desktop Runtime](https://dotnet.microsoft.com/download/dotnet/10.0)
+  (if it's missing, Spindle shows a download link when it starts)
+- **Microsoft Office** (including Microsoft 365) for Word/Excel/PowerPoint conversions and PDF → Word
+- **ffmpeg** for audio and video. The "Install ffmpeg" button in Settings runs `winget install Gyan.FFmpeg`.
+- Images, PDF pages and archives need nothing else.
+
+### Building from source
 
 ```powershell
 git clone https://github.com/Omrndr/spindle.git
@@ -131,109 +144,110 @@ cd spindle
 powershell -File scripts\install.ps1
 ```
 
-Betik tek dosyalık `Spindle.exe`'yi derleyip çalıştırır; exe kendini yukarıdaki gibi kurar.
-`scripts\uninstall.ps1` her şeyi soru sormadan kaldırır.
+The script builds the single-file `Spindle.exe` and runs it; the exe installs itself as described above.
+`scripts\uninstall.ps1` removes everything without asking.
 
-## Word → PDF neden çalışıyor?
+## Why does Word → PDF work?
 
-Bu proje, [File Converter](https://github.com/Tichau/FileConverter) 2.2'nin Word → PDF yapamaması üzerine başladı.
-File Converter 2.2, Office ile konuşmak için NetOffice adlı ek DLL'lere geçti ama bu DLL'ler kurulum paketine
-konmadı; Office kurulu olsa bile dönüşüm `FileNotFoundException` ile çöküyor
+This project started because [File Converter](https://github.com/Tichau/FileConverter) 2.2 can't convert Word to PDF.
+File Converter 2.2 switched to extra DLLs called NetOffice to talk to Office, but those DLLs were left out of the
+installer; even with Office installed, the conversion crashes with `FileNotFoundException`
 ([Tichau/FileConverter#721](https://github.com/Tichau/FileConverter/issues/721)).
 
-Spindle Office'e hiçbir ek DLL olmadan, doğrudan Windows'un COM altyapısıyla (`Word.Application`) bağlanır. Ayrıca:
+Spindle talks to Office directly through Windows' COM infrastructure (`Word.Application`), without any extra DLLs. Also:
 
-- Office görünmez çalışır. Beklenmedik bir uyarı açarsa Spindle onu daha ekrana gelmeden saydam yapıp
-  ekran dışına taşır ve yanıtlar. Word'ün PDF uyarısını gösteren ayrı `PDFREFLOW.EXE` işlemi de izlenir.
-- Office (ve PDFREFLOW gibi yardımcıları) uzun süre hiç işlemci kullanmadan beklerse takılmış sayılır: önce
-  yardımcı işlemler kapatılır, Office yine yanıt vermezse yalnızca Spindle'ın başlattığı Office kapatılır.
-- Zaten açık olan Word/Excel'inize bağlanırsa içindeki belgelerinize ve ayarlarına (ör. görünürlüğüne) dokunmaz.
+- Office runs invisibly. If it opens an unexpected dialog, Spindle makes it transparent, moves it off-screen before it
+  appears, and answers it. The separate `PDFREFLOW.EXE` process that shows Word's PDF warning is watched too.
+- If Office (or helpers like PDFREFLOW) sits without using any CPU for a long time, it is treated as stuck: helper
+  processes are closed first, and if Office still doesn't respond, only the Office instance Spindle started is closed.
+- If Spindle attaches to a Word/Excel you already have open, it leaves your documents and settings (such as visibility)
+  alone.
 
-## Hız
+## Speed
 
-Aynı bilgisayarda, aynı dosyalarla (12 çekirdek, Microsoft 365), File Converter 2.2 ile karşılaştırma:
+Compared with File Converter 2.2 on the same PC with the same files (12 cores, Microsoft 365):
 
-| Senaryo | File Converter 2.2 | Spindle |
+| Scenario | File Converter 2.2 | Spindle |
 |---|---|---|
-| Word → PDF (küçük belge) | çöküyor (eksik DLL) | 4,5 sn; çark açıkken Word önceden başlatıldığında 1,4 sn |
-| 3 küçük Word belgesi art arda | çöküyor | 2,6 sn (tek Word örneği) |
-| 10 JPG (6 MP) → PNG | 7,4 sn | 2,8 sn |
-| WAV (60 sn) → MP3 | 1,4 sn | 0,8 sn |
-| MP4 1080p (15 sn) → WEBM | 4 dakikada bitmedi | 20 sn |
+| Word → PDF (small document) | crashes (missing DLL) | 4.5 s; 1.4 s when Word was pre-started while the wheel was open |
+| 3 small Word documents in a row | crashes | 2.6 s (one Word instance) |
+| 10 JPGs (6 MP) → PNG | 7.4 s | 2.8 s |
+| WAV (60 s) → MP3 | 1.4 s | 0.8 s |
+| MP4 1080p (15 s) → WEBM | not done after 4 minutes | 20 s |
 
-- **Word sıcak tutulur.** Word'ü açmak tek başına ~3,5 sn sürer. Spindle çark bir Office belgesi için açıldığı
-  anda Word'ü arka planda başlatır ve art arda gelen dosyalarda aynı Word'ü kullanır; iş bitince birkaç saniye
-  içinde kapatır.
-- **Çok dosyalı işler paralel çalışır:** görseller çekirdek sayısına göre (en fazla 6), ses/video ikişer.
-  Office dosyaları tek Word örneğinde sırayla çevrilir.
-- **WEBM** için VP9 hızlı kalite ayarıyla (`-cpu-used 4`) kodlanır: varsayılandan ~3,4 kat hızlı, kalite farkı
-  ölçülemeyecek kadar az (SSIM 0,9975 → 0,9968).
+- **Word is kept warm.** Starting Word alone takes ~3.5 s. As soon as the wheel opens for an Office document, Spindle
+  starts Word in the background, reuses the same Word for consecutive files, and closes it a few seconds after the job.
+- **Multi-file jobs run in parallel:** images by core count (up to 6), audio/video two at a time.
+  Office files are converted one by one in a single Word instance.
+- **WEBM** is encoded with VP9's fast quality setting (`-cpu-used 4`): ~3.4× faster than the default, with a quality
+  difference too small to measure (SSIM 0.9975 → 0.9968).
 
-Çok sayıda metin kutusu ve denklem içeren büyük Word belgelerinde süreyi Word'ün kendi PDF çizimi belirler
-(85 sayfa, 870 metin kutusu, 324 denklemli bir belgede ~2 dakika). Bu adım Word'ün içinde olduğu için
-Word kullanan her dönüştürücüde aynıdır.
+For large Word documents with many text boxes and equations, the time is set by Word's own PDF rendering
+(~2 minutes for a document with 85 pages, 870 text boxes and 324 equations). That step happens inside Word,
+so it's the same for every converter that uses Word.
 
-## Kaynak kullanımı
+## Resource usage
 
 | | File Converter 2.2 | Spindle |
 |---|---|---|
-| Kurulum boyutu | 147 MB | 52 MB, tek dosya (üç tanıtım GIF'i dahil, toplam ~540 KB) |
-| Boşta | arka planda süreç yok (sağ tık eklentisi Gezgin'in içinde yüklenir) | tepside bekler: ~7 MB RAM, işlemci ~0 |
-| Bir pencere açılıp kapandıktan sonra | — | 30 sn içinde ~12 MB RAM'e iner |
-| 6 MP JPG → PNG sırasında tepe bellek | 180 MB | 119 MB |
-| WAV → MP3 sırasında tepe bellek | 100 MB (+ ffmpeg 18 MB) | 48 MB (+ ffmpeg 18 MB) |
-| Word dönüşümü | çöküyor | Word'ün kendi belleği (~250 MB) iş sırasında ve sonrasında en fazla 8 sn (çark açıkken önceden başlatıldıysa 25 sn) |
+| Install size | 147 MB | 52 MB, single file (including the three intro GIFs, ~540 KB total) |
+| Idle | no background process (the right-click extension loads inside Explorer) | waits in the tray: ~7 MB RAM, ~0 CPU |
+| After a window was opened and closed | — | back to ~12 MB RAM within 30 s |
+| Peak memory during 6 MP JPG → PNG | 180 MB | 119 MB |
+| Peak memory during WAV → MP3 | 100 MB (+ ffmpeg 18 MB) | 48 MB (+ ffmpeg 18 MB) |
+| Word conversion | crashes | Word's own memory (~250 MB) during the job and for at most 8 s after (25 s if pre-started while the wheel was open) |
 
-- **Fare izlenmez.** Yalnızca bir klavye kancası vardır; Shift/Ctrl/Alt/Esc dışındaki tuşlarda hiçbir şey yapmaz.
-  Tetik tuşuna basıldığı anda sol fare tuşunun basılı olup olmadığına bir kez bakılır. Sürüklemenin devamı
-  yalnızca çark açıkken, 50 ms'de bir izlenir.
-- **Boşta bellek iade edilir:** 30 sn boyunca pencere açık değilken ve dönüşüm yokken kullanılmayan bellek
-  Windows'a geri verilir.
-- Office/ffmpeg kurulu mu bilgisi 30 sn önbellekte tutulur; her çark açılışında kayıt defteri ve disk taranmaz.
-- **Bildirim kartı** saydam (katmanlı) pencere değildir; gölgeyi ve yuvarlak köşeleri Windows çizer, kart saniyede
-  8 kez güncellenir. "Program yükleniyor" sırasında tek çekirdeğin ~%1,8'i (dönen oklu, saydam pencereli ilk
-  sürümde %24,4'tü).
-- **Tanıtım GIF'leri** ilk turda bir kez çözülür; sonraki turlarda yalnızca değişen küçük bölgeler ekrana yazılır
-  (tek çekirdeğin ~%0,8'i). Pencere gizlenince oynatma durur.
+- **The mouse isn't tracked.** There is only a keyboard hook, and it ignores every key except Shift/Ctrl/Alt/Esc.
+  When the trigger key is pressed, Spindle checks once whether the left mouse button is down. The rest of the drag is
+  only followed while the wheel is open, every 50 ms.
+- **Idle memory is returned:** after 30 s with no window open and no conversion running, unused memory is given back
+  to Windows.
+- Whether Office/ffmpeg is installed is cached for 30 s; the registry and disk aren't scanned every time the wheel opens.
+- The **notification card** isn't a transparent (layered) window; Windows draws the shadow and rounded corners, and the
+  card updates 8 times a second. While "loading" it uses ~1.8% of one core (24.4% in the first version, which had a
+  spinning-arrow, transparent window).
+- The **intro GIFs** are decoded once on the first loop; later loops only write the small regions that change
+  (~0.8% of one core). Playback stops when the window is hidden.
 
-## Bilinen sınırlar
+## Known limitations
 
-- **PDF → Word** Word'ün kendi PDF dönüştürücüsünü kullanır: metin düzenlenebilir hale gelir ama çok görselli
-  ya da karmaşık sayfalar özgün PDF'le birebir aynı görünmeyebilir. Taranmış (yalnızca resim olan) PDF'lerde
-  sayfalar metin değil resim olarak gelir. Office'in daha önce takıldığı bir PDF'te Word "ciddi hataya neden oldu"
-  diye sorar; Spindle bu güvenlik sorusunu "Hayır"la yanıtlar ve dönüşüm iptal edilir.
-- HEIC ve RAW dosyaları okunabilir ama aynı biçimde kaydedilemez; bu dosyalarda araçların sonucu JPG olarak kaydedilir
-  (`DSCF0065 (sıkıştırılmış).jpg`). RAW'lar makinenin kaydettiği beyaz dengesiyle açılır; 26 MP'lik bir Fujifilm RAF
-  JPG'ye ~9 sn'de çevrilir ve sırasında ~570 MB bellek kullanır, bu yüzden RAW'lar aynı anda en fazla iki tane çevrilir.
-  PNG'ye 8 bit, TIFF'e 16 bit yazılır.
-- Sürükle + tuş hareketi varsayılan olarak yalnızca Dosya Gezgini ve masaüstünde çalışır (Ayarlar'dan değiştirilebilir).
+- The interface is in Turkish only for now.
+- **PDF → Word** uses Word's own PDF converter: the text becomes editable, but pages with many images or complex
+  layouts may not look exactly like the original PDF. Scanned (image-only) PDFs come through as images, not text.
+  If Office previously hung on a PDF, Word asks whether to open it again ("caused a serious error"); Spindle answers
+  that safety question with "No" and the conversion is cancelled.
+- HEIC and RAW files can be read but not saved in the same format; tools save their results as JPG for these files
+  (`DSCF0065 (sıkıştırılmış).jpg`). RAW files are opened with the white balance recorded by the camera; a 26 MP Fujifilm
+  RAF converts to JPG in ~9 s and uses ~570 MB of memory while doing so, so at most two RAW files are converted at once.
+  PNG output is 8-bit, TIFF output 16-bit.
+- By default the drag + key gesture only works in File Explorer and on the desktop (this can be changed in Settings).
 
-## Geliştirme
+## Development
 
 ```powershell
 dotnet build
-dotnet test       # Office ve ffmpeg kuruluysa gerçek dönüşümleri de dener
+dotnet test       # also runs real conversions if Office and ffmpeg are installed
 dotnet run --project src\Spindle
 ```
 
-| Klasör | İçerik |
+| Folder | Contents |
 |---|---|
-| `src/Spindle.Core` | Biçim kataloğu ve dönüştürme motorları (Office, Magick.NET, ffmpeg, Windows PDF, arşiv) |
-| `src/Spindle` | WPF uygulaması: çark, bildirim kartı, ayarlar, tanıtım, tepsi simgesi, sürükleme algılama, sesler |
-| `src/Spindle/Tour` | Tanıtım GIF'lerini çizen sahne (uygulamanın gerçek çarkı ve kartıyla, ekrana pencere açmadan) |
-| `tests/Spindle.Tests` | Katalog testleri ve gerçek dosyalarla dönüşüm testleri |
-| `docs` | README görselleri ve tanıtım GIF'leri (GIF'ler uygulamanın içine de gömülür) |
+| `src/Spindle.Core` | Format catalog and conversion engines (Office, Magick.NET, ffmpeg, Windows PDF, archives) |
+| `src/Spindle` | WPF app: wheel, notification card, settings, intro, tray icon, drag detection, sounds |
+| `src/Spindle/Tour` | The scene that draws the intro GIFs (with the app's real wheel and card, without opening windows on screen) |
+| `tests/Spindle.Tests` | Catalog tests and conversion tests with real files |
+| `docs` | README images and intro GIFs (the GIFs are also embedded in the app) |
 
-Derlenen uygulama: `src\Spindle\bin\Debug\net10.0-windows10.0.19041.0\win-x64\Spindle.exe`. Komut satırı:
+Built app: `src\Spindle\bin\Debug\net10.0-windows10.0.19041.0\win-x64\Spindle.exe`. Command line:
 
-| Komut | Ne yapar |
+| Command | What it does |
 |---|---|
-| `--convert to:pdf rapor.docx` | Arayüzsüz dönüştürür; sonuçlar `%LOCALAPPDATA%\Spindle\son-donusum.log` dosyasına yazılır |
-| `--wheel dosya` / `--tools dosya` | Çarkı imlecin yanında açar (sağ tık menüsü bunu kullanır) |
-| `--tour` / `--settings` | Tanıtımı ya da Ayarlar'ı açar |
-| `--uninstall` | Spindle'ı kaldırır (Uygulamalar listesindeki Kaldır düğmesi bunu çağırır) |
-| `--render-tour docs` | Üç tanıtım GIF'ini yeniden üretir |
-| `--snapshot cikti.png convert 0 dosya` | Çarkı görsele çizer (`--dark`, `--no-office` eklenebilir) |
-| `--snapshot-ui klasör` | Kart, Ayarlar ve tanıtım penceresi görsellerini çizer |
-| `--render-icon spindle.ico` | Uygulama simgesini logodan üretir |
-| `--export-sounds klasör` | Tık ve çan seslerini WAV olarak yazar |
+| `--convert to:pdf rapor.docx` | Converts without UI; results go to `%LOCALAPPDATA%\Spindle\son-donusum.log` |
+| `--wheel file` / `--tools file` | Opens the wheel next to the cursor (the right-click menu uses this) |
+| `--tour` / `--settings` | Opens the intro or Settings |
+| `--uninstall` | Removes Spindle (the Uninstall button in the Apps list calls this) |
+| `--render-tour docs` | Regenerates the three intro GIFs |
+| `--snapshot out.png convert 0 file` | Draws the wheel to an image (`--dark`, `--no-office` can be added) |
+| `--snapshot-ui folder` | Draws the card, Settings and intro window images |
+| `--render-icon spindle.ico` | Generates the app icon from the logo |
+| `--export-sounds folder` | Writes the click and chime sounds as WAV |
