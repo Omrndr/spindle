@@ -6,6 +6,8 @@ Dosya Gezgini'nde bir dosyayı sürüklerken **Shift**'e basın: imlecin etrafı
 Dosyayı istediğiniz biçimin tuşuna bırakın; dönüştürülmüş kopya orijinalin yanına kaydedilir.
 Her şey bilgisayarınızda olur; hiçbir dosya internete gönderilmez.
 
+**[⬇ Spindle.exe'yi indir](https://github.com/Omrndr/spindle/releases/latest/download/Spindle.exe)** · Windows 10/11 · 52 MB · [kurulum ve gereksinimler](#kurulum)
+
 <p align="center"><img src="docs/tanitim-donustur.gif" width="720" alt="rapor.docx sürüklenir, Shift'e basılır, PDF tuşuna bırakılır"></p>
 
 Arayüz, macOS'taki [Tangerine](https://tangerineformac.com)'den esinlenmiştir.
@@ -96,14 +98,31 @@ Kaynakla aynı biçim çarkta gösterilmez (ör. DOCX dosyası için DOCX tuşu 
   <img src="docs/kart-tamam.png" width="340" alt="Tamamlandı">
 </p>
 
-## Gereksinimler
+## Kurulum
 
-- Windows 10 (2004) veya Windows 11, [.NET 10 Masaüstü Çalışma Zamanı](https://dotnet.microsoft.com/download/dotnet/10.0)
+**[Spindle.exe'yi indirin](https://github.com/Omrndr/spindle/releases/latest/download/Spindle.exe)** (Windows, 52 MB) ve çalıştırın.
+
+Kurulum programı yoktur: Spindle ilk açılışta kendini `%LOCALAPPDATA%\Programs\Spindle` klasörüne kopyalar,
+Başlat menüsüne ve Windows'un **Uygulamalar** listesine ekler, sonra tanıtımı gösterir. Yönetici izni gerekmez.
+
+- Uygulama imzalı olmadığı için Windows SmartScreen "Windows bilgisayarınızı korudu" diyebilir:
+  **Ek bilgi → Yine de çalıştır**.
+- Güncellemek için yeni `Spindle.exe`'yi indirip çalıştırın; çalışan sürüm kapanır, ayarlarınız korunur.
+- Kaldırmak için: Windows Ayarları → **Uygulamalar** → Spindle → **Kaldır**. Sağ tık menüsü, otomatik başlatma ve
+  ayarlar da silinir.
+- Sağ tık menüsü, "Windows açılınca başlat" ve sesler Spindle'ın Ayarlar'ından açılıp kapatılır.
+
+<p align="center"><img src="docs/ayarlar.png" width="420" alt="Ayarlar"></p>
+
+### Gereksinimler
+
+- Windows 10 (2004) veya Windows 11 ve [.NET 10 Masaüstü Çalışma Zamanı](https://dotnet.microsoft.com/download/dotnet/10.0)
+  (yoksa Spindle açılırken indirme bağlantısını gösterir)
 - Word/Excel/PowerPoint dönüşümleri ve PDF → Word için **Microsoft Office** (Microsoft 365 dahil)
 - Ses ve video için **ffmpeg**. Ayarlar'daki "ffmpeg'i kur" düğmesi `winget install Gyan.FFmpeg` çalıştırır.
 - Görseller, PDF sayfaları ve arşivler ek bir şey gerektirmez.
 
-## Kurulum
+### Kaynaktan kurmak
 
 ```powershell
 git clone https://github.com/Omrndr/spindle.git
@@ -111,11 +130,8 @@ cd spindle
 powershell -File scripts\install.ps1
 ```
 
-Uygulama `%LOCALAPPDATA%\Programs\Spindle` klasörüne kurulur, Başlat menüsüne eklenir ve tanıtımla açılır.
-Sağ tık menüsü, "Windows açılınca başlat" ve sesler Ayarlar'dan açılıp kapatılır.
-Kaldırmak için: `powershell -File scripts\uninstall.ps1`
-
-<p align="center"><img src="docs/ayarlar.png" width="420" alt="Ayarlar"></p>
+Betik tek dosyalık `Spindle.exe`'yi derleyip çalıştırır; exe kendini yukarıdaki gibi kurar.
+`scripts\uninstall.ps1` her şeyi soru sormadan kaldırır.
 
 ## Word → PDF neden çalışıyor?
 
@@ -160,7 +176,7 @@ Word kullanan her dönüştürücüde aynıdır.
 
 | | File Converter 2.2 | Spindle |
 |---|---|---|
-| Kurulum boyutu | 147 MB | 52 MB (üç tanıtım GIF'i dahil, toplam ~540 KB) |
+| Kurulum boyutu | 147 MB | 52 MB, tek dosya (üç tanıtım GIF'i dahil, toplam ~540 KB) |
 | Boşta | arka planda süreç yok (sağ tık eklentisi Gezgin'in içinde yüklenir) | tepside bekler: ~7 MB RAM, işlemci ~0 |
 | Bir pencere açılıp kapandıktan sonra | — | 30 sn içinde ~12 MB RAM'e iner |
 | 6 MP JPG → PNG sırasında tepe bellek | 180 MB | 119 MB |
@@ -211,6 +227,7 @@ Derlenen uygulama: `src\Spindle\bin\Debug\net10.0-windows10.0.19041.0\win-x64\Sp
 | `--convert to:pdf rapor.docx` | Arayüzsüz dönüştürür; sonuçlar `%LOCALAPPDATA%\Spindle\son-donusum.log` dosyasına yazılır |
 | `--wheel dosya` / `--tools dosya` | Çarkı imlecin yanında açar (sağ tık menüsü bunu kullanır) |
 | `--tour` / `--settings` | Tanıtımı ya da Ayarlar'ı açar |
+| `--uninstall` | Spindle'ı kaldırır (Uygulamalar listesindeki Kaldır düğmesi bunu çağırır) |
 | `--render-tour docs` | Üç tanıtım GIF'ini yeniden üretir |
 | `--snapshot cikti.png convert 0 dosya` | Çarkı görsele çizer (`--dark`, `--no-office` eklenebilir) |
 | `--snapshot-ui klasör` | Kart, Ayarlar ve tanıtım penceresi görsellerini çizer |

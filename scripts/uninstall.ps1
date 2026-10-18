@@ -5,6 +5,7 @@ Start-Sleep -Milliseconds 500
 
 Remove-Item 'HKCU:\Software\Classes\AllFilesystemObjects\shell\Spindle' -Recurse -ErrorAction SilentlyContinue
 Remove-ItemProperty 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Run' -Name Spindle -ErrorAction SilentlyContinue
+Remove-Item 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Uninstall\Spindle' -Recurse -ErrorAction SilentlyContinue
 Remove-Item (Join-Path $env:APPDATA 'Microsoft\Windows\Start Menu\Programs\Spindle.lnk') -ErrorAction SilentlyContinue
 Remove-Item (Join-Path $env:LOCALAPPDATA 'Programs\Spindle') -Recurse -Force -ErrorAction SilentlyContinue
 Remove-Item (Join-Path $env:APPDATA 'Spindle') -Recurse -Force -ErrorAction SilentlyContinue

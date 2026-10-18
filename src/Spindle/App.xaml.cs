@@ -49,6 +49,10 @@ public partial class App : Application
         if (args.FirstOrDefault() == "--render-tour") { Tour.TourRenderer.RenderAll(Path.GetFullPath(args[1])); Shutdown(); return; }
         if (args.FirstOrDefault() == "--export-sounds") { Sounds.Export(Path.GetFullPath(args[1])); Shutdown(); return; }
 
+        if (args.FirstOrDefault() == "--uninstall") { Installer.Uninstall(); Shutdown(); return; }
+        // İndirilen Spindle.exe ilk açılışta kendini kurar ve kurulu kopyayı başlatır.
+        if (args.Length == 0 && Installer.InstallIfDownloaded()) { Shutdown(); return; }
+
         if (!SingleInstance.TryBecomePrimary())
         {
             SingleInstance.Forward(args);
@@ -56,6 +60,7 @@ public partial class App : Application
             return;
         }
 
+        Installer.EnsureRegistered();
         var firstRun = !AppSettings.Exists;
         settings = AppSettings.Load();
         if (firstRun) settings.Save();
@@ -94,6 +99,9 @@ public partial class App : Application
                 break;
             case "--wheel" or "--tools":
                 QueueWheel(flag == "--tools" ? WheelMode.Tools : WheelMode.Convert, args.Skip(1));
+                break;
+            case "--quit":
+                Quit();
                 break;
             case "--tour":
                 ShowTour();
