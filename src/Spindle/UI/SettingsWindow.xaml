@@ -89,6 +89,54 @@
       </Setter>
     </Style>
 
+    <!-- İnce kaydırıcı: dolu kısım vurgu renginde, yuvarlak tutamak -->
+    <Style x:Key="SliderFill" TargetType="RepeatButton">
+      <Setter Property="Focusable" Value="False"/>
+      <Setter Property="Template">
+        <Setter.Value>
+          <ControlTemplate TargetType="RepeatButton">
+            <Border Height="4" CornerRadius="2" Background="{TemplateBinding Background}"/>
+          </ControlTemplate>
+        </Setter.Value>
+      </Setter>
+    </Style>
+    <Style TargetType="Slider">
+      <Setter Property="Cursor" Value="Hand"/>
+      <Setter Property="Template">
+        <Setter.Value>
+          <ControlTemplate TargetType="Slider">
+            <Track x:Name="PART_Track" Height="22">
+              <Track.DecreaseRepeatButton>
+                <RepeatButton Style="{StaticResource SliderFill}" Background="{DynamicResource Accent}" Command="Slider.DecreaseLarge"/>
+              </Track.DecreaseRepeatButton>
+              <Track.IncreaseRepeatButton>
+                <RepeatButton Style="{StaticResource SliderFill}" Background="{DynamicResource Track}" Command="Slider.IncreaseLarge"/>
+              </Track.IncreaseRepeatButton>
+              <Track.Thumb>
+                <Thumb>
+                  <Thumb.Template>
+                    <ControlTemplate TargetType="Thumb">
+                      <Ellipse x:Name="Knob" Width="18" Height="18" Fill="White" Stroke="{DynamicResource CardEdge}" StrokeThickness="1">
+                        <Ellipse.Effect>
+                          <DropShadowEffect BlurRadius="4" ShadowDepth="1" Opacity="0.25"/>
+                        </Ellipse.Effect>
+                      </Ellipse>
+                      <ControlTemplate.Triggers>
+                        <Trigger Property="IsDragging" Value="True">
+                          <Setter TargetName="Knob" Property="Width" Value="20"/>
+                          <Setter TargetName="Knob" Property="Height" Value="20"/>
+                        </Trigger>
+                      </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                  </Thumb.Template>
+                </Thumb>
+              </Track.Thumb>
+            </Track>
+          </ControlTemplate>
+        </Setter.Value>
+      </Setter>
+    </Style>
+
     <Style x:Key="Pill" TargetType="Button">
       <Setter Property="Cursor" Value="Hand"/>
       <Setter Property="Foreground" Value="White"/>
